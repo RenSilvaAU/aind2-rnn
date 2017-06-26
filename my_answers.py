@@ -40,21 +40,30 @@ def build_part1_RNN(step_size, window_size):
 
 ### TODO: list all unique characters in the text and remove any non-english ones
 def clean_text(text):
+    
     # find all unique characters in the text
     chars = sorted(list(set(text)))
-    print('Unique Chars: P{} '.format(chars))    
-    unwanted = [char for char in chars if char > 'z']
-    print('Unwanted: P{} '.format(unwanted))
+    print('I started with {} Unique Chars: P{} '.format(len(chars),chars))
+    unwanted = [char for char in chars if (char < 'a' or char > 'z')  \
+              and (char not in  [' ', '!', ',', '.', ':', ';', '?'])]
+
+
+    print('\nUnwanted: P{} '.format(unwanted))
 
     # remove as many non-english characters and character sequences as you can 
     sb = len(text)
     for char in unwanted:
-        text = text.replace(char,'')
+       text = text.replace(char,'')
+
     sf = len(text)
+          
     print('Removed {} unwanted sequences'.format(sb-sf))
         
     # shorten any extra dead space created above
     text = text.replace('  ',' ')
+
+    chars = sorted(list(set(text)))
+    print('\nNow I have {} Unique Chars: P{} '.format(len(chars),chars))
 
 
 ### TODO: fill out the function below that transforms the input text and window-size into a set of input/output pairs for use with our RNN model
