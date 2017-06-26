@@ -42,7 +42,7 @@ def build_part1_RNN(step_size, window_size):
 def clean_text(text):
     # find all unique characters in the text
     chars = sorted(list(set(text)))
-    print('Unique Chars: P{} '.format(chars)    
+    print('Unique Chars: P{} '.format(chars))    
     unwanted = [char for char in chars if char > 'z']
     print('Unwanted: P{} '.format(unwanted))
 
